@@ -1,11 +1,9 @@
-'use client';
-
-import { ChakraProvider } from '@chakra-ui/react';
 import { Metadata } from 'next';
+import { ChakraProvider } from '@chakra-ui/react';
 
 export const metadata: Metadata = {
-  title: '札分けアプリ',
-  description: '競技かるたの練習で、札分け番号を自動で決めてくれます',
+  title: '札分け - 競技かるたアプリ',
+  description: '競技かるたの札分けをサポートするアプリケーション',
 };
 
 export default function RootLayout({
@@ -14,7 +12,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en">
+    <html lang="ja">
       <body>
         <ChakraProvider>{children}</ChakraProvider>
       </body>
