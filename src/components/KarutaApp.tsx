@@ -134,6 +134,7 @@ export default function KarutaApp() {
               key={position.key}
               isChecked={selectedPositions[position.key]}
               onChange={() => handlePositionChange(position.key)}
+              colorScheme="green"
             >
               {position.label}
             </Checkbox>
@@ -141,11 +142,11 @@ export default function KarutaApp() {
 
           <Button
             onClick={generateRandomRule}
-            colorScheme="blue"
+            colorScheme="green"
             mt={4}
             isDisabled={Object.values(selectedPositions).every((v) => !v)}
           >
-            ランダムルール生成
+            札分けを決める！
           </Button>
           {ruleDescription.length > 0 && (
             <VStack align="stretch" mt={2}>
