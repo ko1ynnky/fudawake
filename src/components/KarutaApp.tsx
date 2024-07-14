@@ -29,6 +29,8 @@ import {
 } from '../utils/ruleGenerators';
 import Footer from './Footer';
 
+const STORAGE_KEY = 'karutaAppHistory';
+
 export default function KarutaApp() {
   const [ruleDescription, setRuleDescription] = useState<string[]>([]);
   const [selectedPositions, setSelectedPositions] = useState<SelectedPositions>(
@@ -48,7 +50,19 @@ export default function KarutaApp() {
   const [threeFromEachRule, setThreeFromEachRule] =
     useState<ThreeFromEachRule | null>(null);
   const [splitRule, setSplitRule] = useState<SplitRule | null>(null);
-  const [history, setHistory] = useState<HistoryItem[]>([]);
+  const [history, setHistory] = useState<HistoryItem[]>(() => {
+    if (typeof window !== 'undefined') {
+      const savedHistory = localStorage.getItem(STORAGE_KEY);
+      return savedHistory ? JSON.parse(savedHistory) : [];
+    }
+    return [];
+  });
+
+  useEffect(() => {
+    if (typeof window !== 'undefined') {
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(history));
+    }
+  }, [history]);
 
   const handlePositionChange = (key: string) => {
     setSelectedPositions((prev) => {
