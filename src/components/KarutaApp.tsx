@@ -27,6 +27,7 @@ import {
   generateThreeFromEachRule,
   generateSplitRule,
 } from '../utils/ruleGenerators';
+import Footer from './Footer';
 
 export default function KarutaApp() {
   const [ruleDescription, setRuleDescription] = useState<string[]>([]);
@@ -118,74 +119,79 @@ export default function KarutaApp() {
   }, [selectedPositions]);
 
   return (
-    <Box as="main" p={4}>
-      <VStack spacing={4} align="stretch">
-        <Heading as="h1" size="xl">
-          札分け
-        </Heading>
-
-        <VStack spacing={2} align="stretch">
-          <Heading as="h2" size="md" mb={2}>
-            使用するルール
+    <Box display="flex" flexDirection="column" minHeight="100vh">
+      <Box as="main" p={4} flex={1}>
+        <VStack spacing={4} align="stretch">
+          <Heading as="h1" size="xl">
+            札分け
           </Heading>
 
-          {RULE_POSITIONS.map((position) => (
-            <Checkbox
-              key={position.key}
-              isChecked={selectedPositions[position.key]}
-              onChange={() => handlePositionChange(position.key)}
+          <VStack spacing={2} align="stretch">
+            <Heading as="h2" size="md" mb={2}>
+              使用するルール
+            </Heading>
+
+            {RULE_POSITIONS.map((position) => (
+              <Checkbox
+                key={position.key}
+                isChecked={selectedPositions[position.key]}
+                onChange={() => handlePositionChange(position.key)}
+                colorScheme="green"
+              >
+                {position.label}
+              </Checkbox>
+            ))}
+
+            <Button
+              onClick={generateRandomRule}
               colorScheme="green"
+              mt={4}
+              isDisabled={Object.values(selectedPositions).every((v) => !v)}
             >
-              {position.label}
-            </Checkbox>
-          ))}
-
-          <Button
-            onClick={generateRandomRule}
-            colorScheme="green"
-            mt={4}
-            isDisabled={Object.values(selectedPositions).every((v) => !v)}
-          >
-            札分けを決める！
-          </Button>
-          {ruleDescription.length > 0 && (
-            <VStack align="stretch" mt={2}>
-              <Text fontWeight="bold">現在のルール:</Text>
-              {ruleDescription.map((line, index) => (
-                <Text key={index}>{line}</Text>
-              ))}
-            </VStack>
-          )}
-        </VStack>
-
-        <VStack spacing={2} align="stretch">
-          <Heading as="h2" size="md" mb={2}>
-            生成履歴
-          </Heading>
-          {history.map((item, index) => (
-            <HStack
-              key={item.id}
-              justify="space-between"
-              p={2}
-              bg="gray.100"
-              borderRadius="md"
-            >
-              <VStack align="start" spacing={0}>
-                <Text fontWeight="bold">ルール {history.length - index}:</Text>
-                {item.description.map((line, lineIndex) => (
-                  <Text key={lineIndex}>{line}</Text>
+              札分けを決める！
+            </Button>
+            {ruleDescription.length > 0 && (
+              <VStack align="stretch" mt={2}>
+                <Text fontWeight="bold">現在のルール:</Text>
+                {ruleDescription.map((line, index) => (
+                  <Text key={index}>{line}</Text>
                 ))}
               </VStack>
-              <IconButton
-                aria-label="履歴を削除"
-                icon={<DeleteIcon />}
-                onClick={() => deleteHistoryItem(item.id)}
-                size="sm"
-              />
-            </HStack>
-          ))}
+            )}
+          </VStack>
+
+          <VStack spacing={2} align="stretch">
+            <Heading as="h2" size="md" mb={2}>
+              生成履歴
+            </Heading>
+            {history.map((item, index) => (
+              <HStack
+                key={item.id}
+                justify="space-between"
+                p={2}
+                bg="gray.100"
+                borderRadius="md"
+              >
+                <VStack align="start" spacing={0}>
+                  <Text fontWeight="bold">
+                    ルール {history.length - index}:
+                  </Text>
+                  {item.description.map((line, lineIndex) => (
+                    <Text key={lineIndex}>{line}</Text>
+                  ))}
+                </VStack>
+                <IconButton
+                  aria-label="履歴を削除"
+                  icon={<DeleteIcon />}
+                  onClick={() => deleteHistoryItem(item.id)}
+                  size="sm"
+                />
+              </HStack>
+            ))}
+          </VStack>
         </VStack>
-      </VStack>
+      </Box>
+      <Footer />
     </Box>
   );
 }
