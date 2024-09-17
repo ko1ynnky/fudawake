@@ -1,5 +1,6 @@
 import { Metadata } from 'next';
 import { ChakraProvider } from '@chakra-ui/react';
+import { Analytics } from "@vercel/analytics/react"
 
 export const metadata: Metadata = {
   title: '札分けアプリ 競技かるた',
@@ -21,6 +22,7 @@ export default function RootLayout({
       </head>
       <body>
         <ChakraProvider>{children}</ChakraProvider>
+        <Analytics />
       </body>
     </html>
   );
