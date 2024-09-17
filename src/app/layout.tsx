@@ -17,6 +17,7 @@ export default function RootLayout({
     <html lang="ja">
       <head>
         <link rel="canonical" href="https://fudawake.vercel.app/" />
+        <meta name="google-site-verification" content="3w5Pf4GL9rAPnUVPfN8cgTKnSNAmIHcd4G0JYEeJiyk" />
       </head>
       <body>
         <ChakraProvider>{children}</ChakraProvider>
