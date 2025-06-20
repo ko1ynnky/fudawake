@@ -4,6 +4,12 @@ import { getRandomNumbers, getPotentialCards } from './helperFunctions';
 import { ThreeNumbersRule, ThreeFromEachRule, SplitRule } from '@/types';
 import { KIMARIJI_MAP } from './kimarijiMap'; // 追加
 
+// カード番号0を100に変換してKIMARIJI_MAPから決まり字を取得するヘルパー関数
+const getKimariji = (cardNumber: number): string => {
+  const key = cardNumber === 0 ? 100 : cardNumber;
+  return KIMARIJI_MAP[key] || '';
+};
+
 export const generatePositionRule = (): string[] => {
   const numbers = Array.from({ length: 10 }, (_, i) => i);
   const selectedNumbers = getRandomNumbers(numbers, 5);
@@ -23,7 +29,7 @@ export const generateThreeNumbersRule = (
   setThreeNumbersRule({ numbers: selectedNumbers, excluded: excludedNumber });
   return [
     `数字: ${selectedNumbers.join(', ')}`,
-    `除外: ${excludedNumber}（${KIMARIJI_MAP[excludedNumber]}）`,
+    `除外: ${excludedNumber}（${getKimariji(excludedNumber)}）`,
   ];
 };
 
@@ -46,7 +52,7 @@ export const generateThreeFromEachRule = (
   return [
     `一の位: ${selectedOnes.join(', ')}`,
     `十の位: ${selectedTens.join(', ')}`,
-    `除外: ${excludedNumber}（${KIMARIJI_MAP[excludedNumber]}）`,
+    `除外: ${excludedNumber}（${getKimariji(excludedNumber)}）`,
   ];
 };
 
@@ -70,6 +76,6 @@ export const generateSplitRule = (
   return [
     `一の位: ${selectedOnes.join(', ')}`,
     `十の位: ${selectedTens.join(', ')}`,
-    `除外: ${excludedNumbers.map(num => `${num}（${KIMARIJI_MAP[num]}）`).join(', ')}`,
+    `除外: ${excludedNumbers.map(num => `${num}（${getKimariji(num)}）`).join(', ')}`,
   ];
 };
