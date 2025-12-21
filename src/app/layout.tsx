@@ -20,6 +20,12 @@ export default function RootLayout({
       <head>
         <link rel="canonical" href="https://fudawake.vercel.app/" />
         <meta name="google-site-verification" content="3w5Pf4GL9rAPnUVPfN8cgTKnSNAmIHcd4G0JYEeJiyk" />
+        <link rel="manifest" href="/manifest.json" />
+        <meta name="theme-color" content="#c41e3a" />
+        <meta name="apple-mobile-web-app-capable" content="yes" />
+        <meta name="apple-mobile-web-app-status-bar-style" content="default" />
+        <meta name="apple-mobile-web-app-title" content="札分け" />
+        <link rel="apple-touch-icon" href="/icons/icon.svg" />
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
         <link

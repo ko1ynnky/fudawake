@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="192" height="192" viewBox="0 0 512 512">
+  <!-- かるた札の背景 -->
+  <rect x="115" y="64" width="282" height="384" rx="16" fill="#f5f0e6" stroke="#1a1a1a" stroke-width="8"/>
+  <!-- 装飾線（上部） -->
+  <line x1="157" y1="110" x2="355" y2="110" stroke="#c41e3a" stroke-width="10" stroke-linecap="round"/>
+  <!-- 「札」の文字 -->
+  <text x="256" y="300" font-family="serif" font-size="180" fill="#1a1a1a" text-anchor="middle" font-weight="bold">札</text>
+  <!-- 装飾線（下部） -->
+  <line x1="157" y1="402" x2="355" y2="402" stroke="#c41e3a" stroke-width="10" stroke-linecap="round"/>
+</svg>
